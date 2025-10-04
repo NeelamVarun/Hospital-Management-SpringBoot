@@ -1,4 +1,4 @@
-package com.service.hospitalmanagement.entity;
+package com.service.hospitalmanagement.dto;
 
 public class LoginRequest{
 
