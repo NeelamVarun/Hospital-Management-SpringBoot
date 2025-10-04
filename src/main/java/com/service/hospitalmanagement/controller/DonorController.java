@@ -85,7 +85,7 @@ public class DonorController {
 			return ResponseEntity.notFound().build();
 		}
 
-		DonorNotificationEntity notification = donorNotificationService.findLatestByDonorEmail(email);
+		DonorNotificationEntity notification = donorNotificationService.findLatestByDonorId(user.getDonorId());
 		boolean isNotified = false;
 		LocalDate notifiedDate = null;
 		if (notification != null) {
@@ -134,7 +134,7 @@ public class DonorController {
 
 		// update hasNotification
 		DonorNotificationEntity notificationEntity = donorNotificationService
-				.findLatestByDonorEmail(notification.getDonorEmail());
+				.findLatestByDonorId(user.getDonorId());
 		notificationEntity.setHasNotification("No");
 		donorNotificationService.saveNotification(notificationEntity);
 

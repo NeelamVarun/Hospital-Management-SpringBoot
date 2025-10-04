@@ -23,7 +23,7 @@ import com.service.hospitalmanagement.service.HospitalAdminService;
 @RequestMapping("/api/auth")
 public class UserController {
 
-	private static final Logger Logger = LoggerFactory.getLogger(UserController.class);
+	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
 	@Autowired
 	private DonorUserService donorUserService;
@@ -65,16 +65,17 @@ public class UserController {
 
 	@PostMapping("registerHospitalUser")
 	public ResponseEntity<Map<String, Object>> register(@RequestBody HospitalAdminEntity user) {
+		logger.info("Entering method register");
 		Map<String, Object> response = new HashMap<>();
 		try {
 			HospitalAdminEntity existingUser = hospitalUserService.getUserByEmail(user.getEmail());
 			if (existingUser != null) {
 				response.put("success", false);
-				response.put("message", "Hospital User email already exists");
+				response.put("message", "Hospital Admin email already exists!!");
 			}else {
 				hospitalUserService.registerUser(user);
 				response.put("success", true);
-				response.put("message", "Hospital User registered successfully");
+				response.put("message", "Hospital Admin registered successfully!!");
 			}
 			return ResponseEntity.ok(response);
 		} catch (Exception e) {
@@ -91,11 +92,11 @@ public class UserController {
 			DonorEntity existingUser = donorUserService.getUserByEmail(user.getEmail());
 			if (existingUser != null) {
 				response.put("success", false);
-				response.put("message", "Donor Email already exists");
+				response.put("message", "Donor Email already exists!!");
 			}else {
 				donorUserService.registerUser(user);
 				response.put("success", true);
-				response.put("message", "Donor User registered successfully");
+				response.put("message", "Donor registered successfully!!");
 			}
 			return ResponseEntity.ok(response);
 		} catch (Exception e) {
